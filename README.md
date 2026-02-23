@@ -1,15 +1,9 @@
-# λ Lambda Physics
+# Arquimedes
 
-Half-Life GoldSource mod running via WebAssembly in React, teaching physics principles through interactive gameplay.
+A professional React website about Arquimedes, featuring a navigation menu and flexbox layout.
 
-## Stack
-- Frontend: React + TypeScript + Vite
-- Backend: Fastify + Prisma + PostgreSQL
-- Game: GoldSource mod via Xash3D FWGS + Emscripten
-- Deploy: Fly.io
+## Getting Started
 
-## Team
-- David — Architect / DevOps / Backend
-- Alejandro — Frontend
-- Adrián — Frontend
-- Javi — Backend
+1. Install dependencies: `npm install`
+2. Run development server: `npm run dev`
+3. Build for production: `npm run build`

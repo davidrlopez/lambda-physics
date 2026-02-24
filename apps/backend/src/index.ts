@@ -11,7 +11,7 @@ fastify.register(cors, {
 });
 
 // --------------------------------------------------------
-// 📝 ENDPOINTS DE GUARDADO
+//  ENDPOINTS DE GUARDADO
 // --------------------------------------------------------
 
 // 1. POST /api/jugadores -> Recibe el cl_name de Xash3D
@@ -51,7 +51,7 @@ fastify.post('/api/partidas', async (request, reply) => {
 });
 
 // --------------------------------------------------------
-// 🏆 EL RANKING PARA EL FRONTEND
+//  EL RANKING PARA EL FRONTEND
 // --------------------------------------------------------
 
 // 3. GET /api/ranking -> Devuelve el Top 10 ordenado por tiempo (Speedrun)

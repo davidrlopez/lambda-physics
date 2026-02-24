@@ -2,6 +2,14 @@ import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import { PrismaClient } from '@prisma/client';
 
+declare const process: {
+  env: {
+    PORT?: string;
+    [key: string]: string | undefined;
+  };
+  exit(code?: number): never;
+};
+
 const fastify = Fastify({ logger: true });
 const prisma = new PrismaClient();
 
@@ -77,16 +85,75 @@ fastify.get('/api/ranking', async (request, reply) => {
     fecha: p.createdAt
   }));
 });
+// --------------------------------------------------------
+// TAREAS DEL MIÉRCOLES: ESTADÍSTICAS E HISTORIAL
+// --------------------------------------------------------
 
+// 4. GET /api/stats -> El "Cerebro" de la API
+fastify.get('/api/stats', async (request, reply) => {
+  // Sacamos el total de partidas y la media de tiempo de un golpe
+  const agregados = await prisma.partida.aggregate({
+    _count: { id: true },
+    _avg: { tiempo: true },
+  });
+
+  // Buscamos al "Rey de la pista" (el tiempo más bajo registrado)
+  const recordAbsoluto = await prisma.partida.findFirst({
+    orderBy: { tiempo: 'asc' },
+    include: { jugador: { select: { nombre: true } } }
+  });
+
+  return {
+    totalPartidas: agregados._count.id,
+    mediaTiempo: agregados._avg.tiempo ? Math.round(agregados._avg.tiempo) : 0,
+    jugadorMasRapido: recordAbsoluto ? recordAbsoluto.jugador.nombre : "Nadie aún",
+    mejorTiempo: recordAbsoluto ? recordAbsoluto.tiempo : 0
+  };
+});
+
+// 5. GET /api/jugadores/:nombre/historial -> La ficha del jugador
+fastify.get('/api/jugadores/:nombre/historial', async (request, reply) => {
+  const { nombre } = request.params as { nombre: string };
+
+  const historial = await prisma.jugador.findUnique({
+    where: { nombre },
+    include: {
+      partidas: {
+        orderBy: { createdAt: 'desc' }, // De la más reciente a la más antigua
+        select: {
+          tiempo: true,
+          muertes: true,
+          createdAt: true
+        }
+      }
+    }
+  });
+
+  if (!historial) {
+    return reply.status(404).send({ error: "Jugador no encontrado" });
+  }
+
+  return {
+    nombre: historial.nombre,
+    totalPartidas: historial.partidas.length,
+    partidas: historial.partidas
+  };
+});
 // Arrancar el servidor
 const start = async () => {
   try {
-    await fastify.listen({ port: 3000, host: '0.0.0.0' });
-    console.log('🚀 API de Arquímedes corriendo en http://localhost:3000');
+    // Si la nube nos da un puerto, lo usamos; si no, el 3000
+    const port = Number(process.env.PORT) || 3000;
+    
+    await fastify.listen({ 
+      port: port, 
+      host: '0.0.0.0' // Importante para que Fly.io pueda entrar
+    });
+    
+    console.log(`🚀 API de Arquímedes rodando en el puerto ${port}`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
   }
 };
-
 start();

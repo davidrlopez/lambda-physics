@@ -81,12 +81,18 @@ fastify.get('/api/ranking', async (request, reply) => {
 // Arrancar el servidor
 const start = async () => {
   try {
-    await fastify.listen({ port: 3000, host: '0.0.0.0' });
-    console.log('🚀 API de Arquímedes corriendo en http://localhost:3000');
+    // Si la nube nos da un puerto, lo usamos; si no, el 3000
+    const port = Number(process.env.PORT) || 3000;
+    
+    await fastify.listen({ 
+      port: port, 
+      host: '0.0.0.0' // Importante para que Fly.io pueda entrar
+    });
+    
+    console.log(`🚀 API de Arquímedes rodando en el puerto ${port}`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
   }
 };
-
 start();

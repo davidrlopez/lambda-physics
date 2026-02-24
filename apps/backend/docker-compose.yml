@@ -1,0 +1,34 @@
+services:
+
+  db:
+    image: postgres:16-alpine
+    container_name: lambda-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lmbd_JDQcT8YBsp -d lambda"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: .
+    container_name: lambda-api
+    restart: unless-stopped
+    ports:
+      - "4000:3000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "npx prisma migrate deploy && npx tsx src/index.ts"
+
+volumes:
+  pgdata:

@@ -23,8 +23,7 @@ model Partida {
   id        Int      @id @default(autoincrement())
   jugador   Jugador  @relation(fields: [jugadorId], references: [id])
   jugadorId String
-  tiempo    Int      
-  puntos    Int      
+  tiempo    Int            
   muertes   Int      @default(0) 
   createdAt DateTime @default(now())
 }

@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client';
 const fastify = Fastify({ logger: true });
 const prisma = new PrismaClient();
 
-// 🔓 Abrir las puertas al Frontend (CORS)
+//Abrir las puertas al Frontend (CORS)
 fastify.register(cors, {
   origin: '*', 
 });

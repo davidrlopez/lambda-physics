@@ -1,6 +1,6 @@
-#  Lambda Physics - Backend API
+# Lambda Physics - Backend API
 
-Bienvenido al motor de datos de **Lambda Physics**. Esta API REST gestiona el sistema de *Speedrun*, almacenando los tiempos de los jugadores, generando clasificaciones globales y calculando estadísticas en tiempo real.
+Motor de datos de **Lambda Physics**. Esta API REST gestiona el sistema de _Speedrun_, almacenando los tiempos de los jugadores, generando clasificaciones globales y calculando estadísticas en tiempo real.
 
 Construido con **Fastify**, **Prisma** (PostgreSQL) y **TypeScript**.
 
@@ -10,13 +10,13 @@ Construido con **Fastify**, **Prisma** (PostgreSQL) y **TypeScript**.
 
 La API cuenta con 5 rutas principales. Todas las respuestas se devuelven en formato JSON.
 
-| Método | Ruta | Descripción |
-| :--- | :--- | :--- |
-| **GET** | `/api/ranking` | Devuelve el top de jugadores ordenados por su mejor tiempo (menor a mayor). |
-| **GET** | `/api/stats` | Devuelve estadísticas globales (total de partidas, media de tiempo y récord absoluto). |
-| **GET** | `/api/jugadores/:nombre/historial` | Devuelve el perfil de un jugador específico y todas sus partidas jugadas. |
-| **POST** | `/api/partidas` | Registra una nueva partida desde el juego (C++). |
-| **POST** | `/api/jugadores` | Registra manualmente a un jugador (opcional, `/api/partidas` lo hace automáticamente). |
+| Método   | Ruta                               | Descripción                                                                            |
+| :------- | :--------------------------------- | :------------------------------------------------------------------------------------- |
+| **GET**  | `/api/ranking`                     | Devuelve el top de jugadores ordenados por su mejor tiempo (menor a mayor).            |
+| **GET**  | `/api/stats`                       | Devuelve estadísticas globales (total de partidas, media de tiempo y récord absoluto). |
+| **GET**  | `/api/jugadores/:nombre/historial` | Devuelve el perfil de un jugador específico y todas sus partidas jugadas.              |
+| **POST** | `/api/partidas`                    | Registra una nueva partida desde el juego (C++).                                       |
+| **POST** | `/api/jugadores`                   | Registra manualmente a un jugador (opcional, `/api/partidas` lo hace automáticamente). |
 
 ---
 
@@ -24,18 +24,18 @@ La API cuenta con 5 rutas principales. Todas las respuestas se devuelven en form
 
 Para guardar una partida cuando un jugador termina el nivel, hay que hacer una petición `POST` a `/api/partidas` con el siguiente formato JSON:
 
-```json
+````json
 {
   "nombre": "GordonFreeman",
-  "tiempo": 128, 
+  "tiempo": 128,
   "muertes": 0
 }
 
 ## El tiempo debe enviarse en segundos
 
-## 🧪 Registro de Pruebas (Testing)
+## Registro de Pruebas (Testing)
 
-A continuación se documentan las pruebas de integración realizadas sobre la API para validar las respuestas del servidor y la estructura de los datos (JSON). 
+A continuación se documentan las pruebas de integración realizadas sobre la API para validar las respuestas del servidor y la estructura de los datos (JSON).
 
 *(Nota: En los ejemplos se utiliza `<URL_DEL_SERVIDOR>` para referirse a la dirección donde esté desplegado el backend en cada momento, por ejemplo `localhost:3000` o un dominio en producción).*
 
@@ -79,7 +79,7 @@ A continuación se documentan las pruebas de integración realizadas sobre la AP
     "createdAt": "2026-02-25T07:48:12.617Z"
 }
 
-### Prueba 4: Historial Individual de un Jugador 
+### Prueba 4: Historial Individual de un Jugador
 - **Endpoint:** GET http://<URL_DEL_SERVIDOR>/api/jugadores/Albert/historial
 - **Objetivo:** Asegurar que se recupera el perfil completo del alumno y la lista de todos sus intentos.
 - **Respuesta validada:**
@@ -106,3 +106,5 @@ A continuación se documentan las pruebas de integración realizadas sobre la AP
     "id": "3cff1e8f-afb0-4e22-95a1-8ed00e2d0150",
     "nombre": "Pepe"
 }
+````
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="game.css">
+    <script src="game.js" defer></script>
+    <title>Lambda Physics - Terminal</title>
+</head>
+<body>
+    <div class="header">
+        <p>ENTORNO DE JUEGO</p>
+        <a href="../indice.html"></a>
+    </div>
+
+    <div class="espacio"></div>
+
+    <section class="titulo">
+        <div class="cont-titulo">
+            <h1><span>JUEGO INTERACTIVO: <br></span> LAMBDA PHYSICS</h1>
+        </div>
+    </section>
+
+    <section class="secciones">
+      <div class="explicacion">
+      <h2 class="cat-titulo">// EXPLICACIÓN BREVE DEL JUEGO</h2>
+      <p class="contenido">El núcleo de la experiencia reside en una progresión de siete niveles diseñados como retos lógicos, donde el entorno responde estrictamente a leyes físicas reales. A diferencia de un juego de plataformas convencional, aquí el avance no depende de la agilidad en el salto, sino de la capacidad de análisis del jugador para interpretar y manipular las variables del escenario. Cada cámara de prueba es un laboratorio interactivo donde la teoría científica se convierte en la herramienta principal para desbloquear el camino.</p>
+      </div>
+
+      <div class="juego">
+      <h2 class="cat-titulo">// VENTANA DE JUEGO</h2>
+
+      <div class="cont-juego">
+        <iframe 
+            src="https://www.half-life.com/en/halflife/25th" 
+            allow="autoplay; fullscreen; keyboard"
+            loading="lazy" 
+            id="miJuego">
+        </iframe>
+
+        <button onclick="PantallaCompleta()" class="btn-fullscreen">
+            <span>[ PANTALLA COMPLETA ]</span>
+        </button>
+
+        </div>
+      </div>
+      </div>
+
+      <div class="explicacion">
+      <h2 class="cat-titulo">// RANKING</h2></div>
+      
+      <div class="ranking-container">
+                <ul id="lista-ranking">
+                    <li style="justify-content: center; color: var(--texto-dim);">Conectando con la base de datos...</li>
+                </ul>
+            </div>
+
+    </section>
+
+    <div class="footer"></div>
+
+</body>
+</html>

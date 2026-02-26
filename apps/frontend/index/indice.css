@@ -315,13 +315,22 @@ body::before {
 /* EL RESPONSIVE DE LA PAGINA PARA MOVILES */
 @media (max-width: 768px) {
 
+    .titulo {
+        h1 {
+            font-size: 85px;
+        }
+        p {
+            font-size: 40px;
+        }
+    }
+
     .secciones {
         margin: 20px 10px;
     }
 
     .secciones .cat-titulo {
         margin-left: 20px;
-        font-size: 14px; 
+        font-size: 30px; 
     }
 
     .carta, .carta-especial {
@@ -337,6 +346,10 @@ body::before {
         font-size: 60px; 
         right: 15px;
         top: 15px;
+    }
+
+    .carta-game {
+        margin-left: 15px;
     }
 }
 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador // Laboratorio Lambda</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+  <header class="hub-header">
+    <div class="header-left">
+      <span class="lambda-logo">λ</span>
+      <div class="system-id">
+        <span class="title">TERMINAL DE SIMULACIÓN</span>
+        <span class="sub">IES JOSÉ PLANES - 1DAW</span>
+      </div>
+    </div>
+    <div class="system-time">
+      <div class="screen glitch">
+        <div class="clock is-off"><span data-time="" class="time"></span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="hub-container">
+    
+    <section class="content-section intro-section">
+      <div class="intro-text">
+        <h2 class="section-title">EXPLICACIÓN</h2>
+        <p>
+          TEXTO DE PRUEBA PARA VER EL FUNCIONAMIENTO DE LOS ESTILOS CSS EN EL PROYECTO. ESTE TEXTO DEBERÍA APARECER CON LA FUENTE JETBRAINS MONO Y EL COLOR DEFINIDO EN LAS VARIABLES CSS. SI TODO FUNCIONA CORRECTAMENTE, DEBERÍAS VER ESTE PÁRRAFO CON UN ESTILO DIFERENTE AL RESTO DEL DOCUMENTO, DESTACANDO ASÍ LA IMPORTANCIA DE LOS OBJETIVOS DE LA SIMULACIÓN.
+        </p>
+      </div>
+      <div class="intro-images">
+        <div class="img-frame">
+          
+          <img src="ruta_a_tu_foto_1.jpg" alt="Diagrama Arquímedes">
+        </div>
+        <div class="img-frame">
+          
+          <img src="ruta_a_tu_foto_2.jpg" alt="Diagrama Pascal">
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title warning-title">SYS_DIR: RUN // MOTOR GOLDSRC</h2>
+      
+      <div class="game-wrapper">
+        <div class="game-viewport" id="game-container">
+          <div class="game-overlay-standby">
+            <span class="lambda-logo big-logo">λ</span>
+            <button class="btn-start" onclick="iniciarJuego()">INICIAR SIMULACIÓN</button>
+          </div>
+        </div>
+        <div class="game-status-bar">
+          <span>FPS: --</span>
+          <span>PING: -- ms</span>
+          <span class="status-online">STANDBY</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">RANKING POR TIEMPO</h2>
+      
+      <div class="table-container">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>POS</th>
+              <th>INVESTIGADOR</th>
+              <th>SALAS SUPERADAS</th>
+              <th>TIEMPO TOTAL</th>
+              <th>ESTADO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rank-1">01</td>
+              <td>Gordon.F</td>
+              <td>Arquímedes + Pascal</td>
+              <td class="time-col">02:14.50</td>
+              <td><span class="tag-success">VERIFICADO</span></td>
+            </tr>
+            <tr>
+              <td class="rank-2">02</td>
+              <td>Kleiner.I</td>
+              <td>Newton</td>
+              <td class="time-col">03:05.12</td>
+              <td><span class="tag-success">VERIFICADO</span></td>
+            </tr>
+            <tr>
+              <td class="rank-3">03</td>
+              <td>Vance.E</td>
+              <td>Arquímedes</td>
+              <td class="time-col">04:45.89</td>
+              <td><span class="tag-warning">REVISIÓN</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="hub-footer">
+    <span>KRNL_V2.0.4-WEB</span>
+    <span>SISTEMA OPERATIVO BASADO EN LEYES FÍSICAS</span>
+  </footer>
+
+  <script>
+    // Reloj
+    setTimeout(() => document.querySelector('.clock').classList.remove('is-off'), 2000);
+    setInterval(() => {
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+      const timeElement = document.querySelector('.time');
+      timeElement.textContent = timeStr;
+      timeElement.setAttribute('data-time', timeStr);
+    }, 1000);
+
+    // Botón Juego
+    function iniciarJuego() {
+      const overlay = document.querySelector('.game-overlay-standby');
+      overlay.innerHTML = "<p style='color: var(--green-data); font-family: JetBrains Mono;'>CARGANDO MAPA...</p>";
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        document.getElementById('game-container').style.backgroundColor = '#000';
+        document.querySelector('.status-online').textContent = 'ONLINE';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

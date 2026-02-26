@@ -1,0 +1,97 @@
+
+        .infografia {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: var(--carta-bg);
+            border: 1px solid var(--borde);
+            border-left: 4px solid var(--azul-claro);
+            margin-bottom: 100px;
+        }
+        .info-titulo {
+            font-size: 32px;
+            color: var(--azul-claro);
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .info-texto {
+            color: var(--texto-main);
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+     
+        .portal-monitor {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #050505;
+            border: 2px solid var(--texto-dim);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+      
+        .portal-video {
+            width: 100%;
+            display: block;
+            opacity: 0.85; 
+           
+            filter: brightness(1.5) contrast(1.1) grayscale(10%);
+        }
+
+
+        .portal-monitor::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none; 
+        }
+
+  
+        .portal-caption {
+            background-color: var(--texto-dim);
+            color: var(--azul-oscuro);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .formula-box {
+            background-color: rgba(0, 212, 255, 0.05);
+            border: 1px dashed var(--azul-claro);
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 24px;
+        }
+        .btn-volver {
+            display: inline-block;
+            margin-top: 50px;
+            margin-left: 30px;
+            padding: 10px 20px;
+            border: 1px solid var(--texto-dim);
+            color: var(--texto-dim);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .btn-volver:hover {
+            border-color: var(--texto-main);
+            color: var(--texto-main);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+    

@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+/* VARIABLES FIJAS DE COLORES */
+:root {
+    --azul-claro: #00d4ff;
+    --azul-oscuro: #0a1219;
+    --naranja-hl: #ff9d00;
+    --verde-hl: #00ff88;
+    --texto-main: #e2e8f0;
+    --texto-dim: #8ba1c0;
+    --borde: rgba(0, 212, 255, 0.2);
+    --carta-bg: rgba(15, 25, 35, 0.9);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--texto-main);
+    line-height: 1.5;
+}
+
+body {
+    background-color: var(--azul-oscuro);
+    font-family: 'Inter', sans-serif;
+    overflow-y: scroll;
+}
+
+/* EL EFECTO DE CUADRADOS DEL FONDO */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-mask-image: radial-gradient(circle at center, black, transparent 90%);
+    mask-image: radial-gradient(circle at center, black, transparent 90%);
+    z-index: -1;
+    pointer-events: none;
+    
+    animation: grid-move 20s linear infinite, grid-pulse 4s ease-in-out infinite;
+}
+
+@keyframes grid-move {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 40px 40px;
+    }
+}
+
+@keyframes grid-pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* HEADER */
+.header {
+    z-index: 10000;
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+    padding: 15px;
+    font-weight: 700;
+    box-shadow: inset 0px -2px 0px rgb(255,255,255);
+    backdrop-filter: blur(20px);
+
+    p {
+        display: flex;
+        font-size:15px;
+        align-items: center;
+        justify-content: left;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    p:before {
+        content: "λ";
+        color: var(--azul-claro);
+        margin-right: 20px;
+        font-size: 30px;
+        text-shadow: 0 0 15px rgb(249, 250, 255);
+    }
+}
+
+/* ESPACIO ENTRE HEADER Y EL TITULO */
+.espacio {
+    height: 125px;
+}
+
+/* TITULO */
+.titulo {
+
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+
+    span {
+        color: var(--naranja-hl);
+    }
+
+    p {
+        color: var(--texto-dim);
+    }
+}
+
+/* Estilo para el texto del proyecto */
+.titulo h1 {
+    font-size: 7.0rem;
+    font-weight: 900;
+    color: var(--blue-bright);
+    text-shadow: 0 0 15px var(--blue-bright);
+}
+
+.titulo p {
+    font-family: 'JetBrains Mono';
+    font-size: 3rem;
+    color: var(--texto-dim);
+    letter-spacing: 2px;
+}
+
+/* BRILLO AL TITULO */
+.titulo h1 {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5), 0 0 100px rgba(255, 255, 255, 0.5);
+
+    span {
+        text-shadow: 0 0 5px var(--naranja-hl, 1), 0 0 10px var(--naranja-hl, 1), 0 0 100px var(--naranja-hl, 1);
+
+    }
+}
+
+/* SECCIONES (SON 4: TITULO Y 3 CATEGORIAS) */
+.secciones {
+    font-size: 17px;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 50px 30px;
+    display: flex;
+    flex-direction: column;
+
+    .cat-titulo {
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+
+    .cat-titulo::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: rgba(150, 150, 150, 0.5);
+        margin: 20px 0;
+    }
+
+    .categoria {
+        display: block;
+        gap: 20px;
+
+
+        .cartas {
+            display: flex;
+            justify-content: center; 
+            align-items: center;     
+            flex-wrap: wrap;        
+            gap: 80px;
+            width: 100%;            
+            margin: 0 auto;  
+            
+            
+        }
+
+        .carta, .carta-game, .carta-alu {
+            text-decoration: none;
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            background-color: var(--carta-bg);
+            border: 2px solid var(--borde);
+            min-width: 400px;
+            max-width: 2000px;
+            height: 200px;
+
+            .numero {
+                position: absolute;
+                right: 10px;
+                top: 20px;
+                font-size: 120px;
+                color: rgba(255, 255, 255, 0.105);
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+            }
+
+            .contenido {
+                margin: 20px;
+                font-size: 16px;
+                color: var(--azul-claro);
+                .cont-dim {
+                    font-size: 13px;
+                    font-family: 'Inter', sans-serif;
+                    color: var(--texto-dim);
+                    margin-top: -20px;
+                }
+            }
+
+            .boton {
+                margin-left: 30px;
+                margin-top: 5px;
+                border: 1px solid var(--azul-claro);
+                color: var(--azul-claro);
+                width: fit-content;
+                padding: 5px;
+            }
+
+            .Arquimedes_estatua {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                right: -240px;
+                bottom: -80px;
+            }
+             .Pascal_estatua {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                right: -275px;
+                bottom: -90px;
+            }
+
+             .Newton_estatua {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                right: -275px;
+                bottom: -100px;
+            }
+
+
+            .half_life{
+                width: 100%;
+                height: 100%;
+                position: relative;
+                right: -700px;
+                bottom: 200px;
+                opacity: 30%;
+                
+
+
+                img {
+                    width: 320px;
+                    height: 320px;
+                    filter: blur(10px);
+
+                }
+            }
+
+             .Documento_verde{
+                width: 100%;
+                height: 100%;
+                position: relative;
+                right: -670px;
+                bottom: 220px;
+                opacity: 40%;
+                
+
+
+                img {
+                    width: 400px;
+                    height: 400px;
+                    filter: blur(10px);
+
+                }
+            }
+
+        }
+
+        .carta-game, .carta-alu {
+            min-width: 90%;
+            margin: 20px auto;
+        }
+
+        .carta-game {
+            border-left: 4px solid var(--naranja-hl);
+            overflow: hidden;
+
+            .boton {
+                border: 1px solid var(--naranja-hl);
+                color: var(--naranja-hl);
+            }
+        }
+        .carta-alu {
+            border-left: 4px solid var(--verde-hl);
+            overflow: hidden;
+
+            .boton {
+                border: 1px solid var(--verde-hl);
+                color: var(--verde-hl);
+            }
+        }
+
+        .cont-carta-especial {
+            display: flex;
+            justify-content: center;
+
+        }
+        
+    }
+}
+
+/* EL RESPONSIVE DE LA PAGINA PARA MOVILES */
+@media (max-width: 768px) {
+
+    .secciones {
+        margin: 20px 10px;
+    }
+
+    .secciones .cat-titulo {
+        margin-left: 20px;
+        font-size: 14px; 
+    }
+
+    .carta, .carta-especial {
+        min-width: 90% !important;
+    }
+
+    .carta-especial {
+        width: 90% !important;
+        margin: 15px auto !important;
+    }
+    
+    .numero {
+        font-size: 60px; 
+        right: 15px;
+        top: 15px;
+    }
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgba(10, 18, 25, 0.9);
+    border-top: 1px solid var(--borde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--texto-dim);
+    text-shadow: 0 0 5px var(--azul-claro);
+}
+
+
+/* LOS HOVERS */
+
+.carta, .carta-game, .carta-alu {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carta:hover, .carta-game:hover, .carta-alu:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 212, 255, 0.05);
+}
+
+.carta:hover .numero, .carta-game:hover .numero, .carta-alu:hover .numero {
+    color: rgba(255, 255, 255, 0.08);
+    transition: color 0.3s ease;
+}
+
+.carta:hover {
+    border-color: var(--azul-claro);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--azul-claro);
+}
+
+.carta-game:hover {
+    border-color: var(--naranja-hl);
+    background-color: rgba(255, 157, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--naranja-hl);
+            
+}
+
+.carta-alu:hover {
+    border-color: var(--verde-hl);
+    background-color: rgba(0, 255, 136, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--verde-hl);
+}
+
+.boton {
+    transition: all 0.2s ease;
+}
+
+.carta:hover .boton {
+    color: var(--azul-oscuro);
+    box-shadow: 0 0 10px var(--azul-claro);
+    opacity: 1;
+}
+
+.carta-game:hover .boton {
+    color: var(--azul-oscuro);
+    box-shadow: 0 0 10px var(--naranja-hl);
+}
+
+.carta-alu:hover .boton {
+    color: var(--azul-oscuro);
+    box-shadow: 0 0 10px var(--verde-hl);
+}
+
+/* SECRETO */
+.Secreto {
+    text-align: Left;
+    margin: 10px 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    color: var(--naranja-hl);
+    text-shadow: 0 0 10px var(--naranja-hl), 0 0 20px var(--naranja-hl);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}

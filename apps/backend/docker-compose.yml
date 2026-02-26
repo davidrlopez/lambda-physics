@@ -4,6 +4,8 @@ services:
     image: postgres:16-alpine
     container_name: lambda-db
     restart: unless-stopped
+    env_file:
+      - ./.env
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -11,7 +13,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U lmbd_JDQcT8YBsp -d lambda"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -20,10 +22,16 @@ services:
     build: .
     container_name: lambda-api
     restart: unless-stopped
+    env_file:
+      - ./.env
     ports:
       - "4000:3000"
     environment:
       DATABASE_URL: ${DATABASE_URL}
+      PORT: ${PORT:-3000}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      RATE_WINDOW_MS: ${RATE_WINDOW_MS:-60000}
+      RATE_MAX_REQUESTS: ${RATE_MAX_REQUESTS:-120}
     depends_on:
       db:
         condition: service_healthy

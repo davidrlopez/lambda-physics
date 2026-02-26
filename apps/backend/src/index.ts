@@ -13,9 +13,61 @@ declare const process: {
 const fastify = Fastify({ logger: true });
 const prisma = new PrismaClient();
 
-//Abrir las puertas al Frontend (CORS)
+const allowedOrigins = (process.env.CORS_ORIGINS ?? '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const rateWindowMs = Number(process.env.RATE_WINDOW_MS ?? 60_000);
+const rateMaxRequests = Number(process.env.RATE_MAX_REQUESTS ?? 120);
+const requestBuckets = new Map<string, { count: number; resetAt: number }>();
+
+const MAX_LIMIT = 100;
+
+function cleanNombre(input: unknown): string | null {
+  if (typeof input !== 'string') return null;
+  const nombre = input.trim();
+  if (nombre.length < 1 || nombre.length > 32) return null;
+  if (!/^[\w\- .]+$/u.test(nombre)) return null;
+  return nombre;
+}
+
+function parseIntegerInRange(input: unknown, min: number, max: number): number | null {
+  const value = Number(input);
+  if (!Number.isInteger(value)) return null;
+  if (value < min || value > max) return null;
+  return value;
+}
+
+// CORS configurable con variable CORS_ORIGINS (CSV). Sin variable, permite todos (modo dev).
 fastify.register(cors, {
-  origin: '*', 
+  origin: (origin, cb) => {
+    if (!origin || allowedOrigins.length === 0) return cb(null, true);
+    cb(null, allowedOrigins.includes(origin));
+  },
+});
+
+// Rate-limit simple por IP + ruta para reducir spam en endpoints públicos.
+fastify.addHook('onRequest', async (request, reply) => {
+  const method = request.method.toUpperCase();
+  if (method === 'GET' || method === 'HEAD' || method === 'OPTIONS') {
+    return;
+  }
+
+  const key = `${request.ip}:${method}:${request.url.split('?')[0]}`;
+  const now = Date.now();
+  const current = requestBuckets.get(key);
+
+  if (!current || now >= current.resetAt) {
+    requestBuckets.set(key, { count: 1, resetAt: now + rateWindowMs });
+    return;
+  }
+
+  if (current.count >= rateMaxRequests) {
+    return reply.status(429).send({ error: 'Too many requests' });
+  }
+
+  current.count += 1;
 });
 
 // --------------------------------------------------------
@@ -24,8 +76,12 @@ fastify.register(cors, {
 
 // 1. POST /api/jugadores -> Recibe el cl_name de Xash3D
 fastify.post('/api/jugadores', async (request, reply) => {
-  const { nombre } = request.body as { nombre: string };
-  
+  const body = request.body as { nombre?: unknown };
+  const nombre = cleanNombre(body?.nombre);
+  if (!nombre) {
+    return reply.status(400).send({ error: 'Nombre inválido' });
+  }
+
   const jugador = await prisma.jugador.upsert({
     where: { nombre },
     update: {},
@@ -37,10 +93,17 @@ fastify.post('/api/jugadores', async (request, reply) => {
 
 // 2. POST /api/partidas -> Guarda los stats al terminar el nivel
 fastify.post('/api/partidas', async (request, reply) => {
-  const { nombre, tiempo, muertes } = request.body as any;
-  
+  const body = request.body as { nombre?: unknown; tiempo?: unknown; muertes?: unknown };
+  const nombre = cleanNombre(body?.nombre);
+  const tiempo = parseIntegerInRange(body?.tiempo, 0, 86_400);
+  const muertes = parseIntegerInRange(body?.muertes ?? 0, 0, 10_000);
+
+  if (!nombre || tiempo === null || muertes === null) {
+    return reply.status(400).send({ error: 'Payload inválido' });
+  }
+
   const jugador = await prisma.jugador.findUnique({
-    where: { nombre }
+    where: { nombre },
   });
 
   if (!jugador) {
@@ -51,8 +114,8 @@ fastify.post('/api/partidas', async (request, reply) => {
     data: {
       jugadorId: jugador.id,
       tiempo,
-      muertes: muertes || 0
-    }
+      muertes,
+    },
   });
 
   return partida;
@@ -64,7 +127,8 @@ fastify.post('/api/partidas', async (request, reply) => {
 
 // 3. GET /api/ranking -> Devuelve el Top 10 ordenado por tiempo (Speedrun)
 fastify.get('/api/ranking', async (request, reply) => {
-  const limit = Number((request.query as any).limit) || 10;
+  const requestedLimit = parseIntegerInRange((request.query as { limit?: unknown })?.limit ?? 10, 1, MAX_LIMIT);
+  const limit = requestedLimit ?? 10;
 
   const topPartidas = await prisma.partida.findMany({
     take: limit,
@@ -113,7 +177,11 @@ fastify.get('/api/stats', async (request, reply) => {
 
 // 5. GET /api/jugadores/:nombre/historial -> La ficha del jugador
 fastify.get('/api/jugadores/:nombre/historial', async (request, reply) => {
-  const { nombre } = request.params as { nombre: string };
+  const rawNombre = (request.params as { nombre?: unknown })?.nombre;
+  const nombre = cleanNombre(rawNombre);
+  if (!nombre) {
+    return reply.status(400).send({ error: 'Nombre inválido' });
+  }
 
   const historial = await prisma.jugador.findUnique({
     where: { nombre },

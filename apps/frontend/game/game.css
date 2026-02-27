@@ -26,6 +26,7 @@ html {
 body {
   background-color: transparent;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
   overflow-y: scroll;
   padding-bottom: 80px;
 }
@@ -318,8 +319,35 @@ body::after {
     font-size: 14px;
   }
 
+  .secciones .cont-juego {
+    width: 100%;
+    height: clamp(360px, 65vh, 520px);
+    box-shadow: none;
+  }
+
+  .secciones .cont-juego iframe {
+    width: 100%;
+    height: 88%;
+  }
+
+  .secciones .cont-juego .btn-fullscreen {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
   .ranking-container {
-    margin-left: 0px;
+    margin-left: 0;
+    width: 100%;
+    padding: 12px;
+  }
+
+  #lista-ranking {
+    font-size: 14px;
+  }
+
+  #lista-ranking li {
+    gap: 10px;
+    align-items: baseline;
   }
 
   .github-link span {

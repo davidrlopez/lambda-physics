@@ -28,6 +28,7 @@ html {
 body {
     background-color: transparent;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
     overflow-y: scroll;
     padding-bottom: 80px;
 }
@@ -240,6 +241,39 @@ body::after {
 /* ========================= */
 
 @media (max-width: 768px) {
+    .header p {
+        font-size: 16px;
+        margin-left: 6px;
+    }
+
+    .header p:before {
+        margin-right: 10px;
+        font-size: 22px;
+    }
+
+    .header a {
+        right: 16px;
+    }
+
+    .header a:before {
+        content: "←";
+        font-size: 25px;
+    }
+
+    .espacio {
+        height: 96px;
+    }
+
+    .titulo h1 {
+        font-size: 2.2rem;
+        line-height: 1.15;
+        padding: 0 10px;
+    }
+
+    .titulo p {
+        font-size: 1rem;
+    }
+
 
     .galeria {
         flex-direction: column;
@@ -281,5 +315,12 @@ body::after {
         font-weight: 400;
         border-top: 1px solid var(--borde);
         text-align: center;
+    }
+
+    .github-link span {
+        max-width: 70vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }

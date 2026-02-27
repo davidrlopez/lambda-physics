@@ -30,6 +30,7 @@ html {
 body {
   background-color: transparent;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
   overflow-y: scroll;
   padding-bottom: 80px;
 }
@@ -319,9 +320,27 @@ body::before {
 }
 
 @media (max-width: 768px) {
+  .header p {
+    font-size: 16px;
+    margin-left: 6px;
+  }
+
+  .header p::before {
+    margin-right: 10px;
+    font-size: 22px;
+  }
+
+  .header a {
+    right: 16px;
+  }
+
   .header a::before {
     content: "←";
     font-size: 25px;
+  }
+
+  .espacio {
+    height: 96px;
   }
 
   .secciones {

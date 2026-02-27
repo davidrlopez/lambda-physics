@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap");
 /* VARIABLES FIJAS DE COLORES */
 :root {
+  --blue-bright: #00d4ff;
   --azul-claro: #00d4ff;
   --azul-oscuro: #0a1219;
   --naranja-hl: #ff9d00;
@@ -25,6 +26,7 @@ html {
 body {
   background-color: transparent;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
   overflow-y: scroll;
   padding-bottom: 80px;
 }
@@ -347,47 +349,113 @@ body::before {
 }
 
 /* EL RESPONSIVE DE LA PAGINA PARA MOVILES */
+@media (max-width: 992px) {
+  .titulo h1 {
+    font-size: clamp(2.4rem, 9vw, 4rem);
+  }
+
+  .titulo p {
+    font-size: clamp(1rem, 4.5vw, 1.8rem);
+    letter-spacing: 1px;
+  }
+
+  .secciones {
+    margin: 30px 16px;
+  }
+
+  .secciones .cat-titulo {
+    margin-left: 0;
+    font-size: clamp(1rem, 3.5vw, 1.5rem);
+  }
+
+  .secciones .categoria .cartas {
+    gap: 20px;
+  }
+
+  .secciones .categoria .carta,
+  .secciones .categoria .carta-game,
+  .secciones .categoria .carta-alu {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 12px auto;
+    padding-bottom: 16px;
+  }
+
+  .secciones .categoria .carta .numero,
+  .secciones .categoria .carta-game .numero,
+  .secciones .categoria .carta-alu .numero {
+    font-size: 72px;
+    right: 8px;
+    top: 8px;
+  }
+
+  .secciones .categoria .carta .contenido,
+  .secciones .categoria .carta-game .contenido,
+  .secciones .categoria .carta-alu .contenido {
+    margin: 16px;
+    padding-right: 96px;
+  }
+
+  .secciones .categoria .carta .boton,
+  .secciones .categoria .carta-game .boton,
+  .secciones .categoria .carta-alu .boton {
+    margin: 0 0 0 16px;
+  }
+
+  .Arquimedes_estatua,
+  .Pascal_estatua,
+  .Newton_estatua,
+  .half_life,
+  .Documento_verde {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
-  .titulo {
-    h1 {
-      font-size: 85px;
-    }
-    p {
-      font-size: 40px;
-    }
+  .header p {
+    font-size: 16px;
+    margin-left: 6px;
+  }
+
+  .header p:before {
+    margin-right: 10px;
+    font-size: 22px;
+  }
+
+  .header a {
+    right: 16px;
+    font-size: 16px;
+  }
+
+  .header a:before {
+    content: "←";
+  }
+
+  .espacio {
+    height: 96px;
+  }
+
+  .titulo h1 {
+    line-height: 1.1;
   }
 
   .secciones {
     margin: 20px 10px;
   }
 
-  .secciones .cat-titulo {
-    margin-left: 20px;
-    font-size: 30px;
+  .secciones .categoria .carta .numero,
+  .secciones .categoria .carta-game .numero,
+  .secciones .categoria .carta-alu .numero {
+    font-size: 52px;
   }
 
-  .carta,
-  .carta-especial {
-    min-width: 90% !important;
-  }
-
-  .secciones .categoria .cartas .carta {
-    overflow: hidden;
-  }
-
-  .carta-especial {
-    width: 90% !important;
-    margin: 15px auto !important;
-  }
-
-  .numero {
-    font-size: 60px;
-    right: 15px;
-    top: 15px;
-  }
-
-  .carta-game {
-    margin-left: 15px;
+  .secciones .categoria .carta .contenido,
+  .secciones .categoria .carta-game .contenido,
+  .secciones .categoria .carta-alu .contenido {
+    padding-right: 64px;
   }
 
   .github-link span {

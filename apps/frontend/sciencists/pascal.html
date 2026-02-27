@@ -1,60 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../index/indice.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../index/indice.css" />
     <title>Principio de Pascal - Lambda Physics</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="stylesheet" href="pascal.css">
-    <link rel="stylesheet" href="cientificos.css">
-</head>
-<body class="pascal">
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <link rel="stylesheet" href="pascal.css" />
+    <link rel="stylesheet" href="cientificos.css" />
+  </head>
+  <body class="pascal">
     <div class="header">
-        <p>PROYECTO CULTURAL DE FÍSICA</p>
+      <p>ENTORNO CIENTÍFICO</p>
+      <a href="../index/indice.html"></a>
     </div>
 
     <div class="espacio"></div>
 
-    <a href="../index/indice.html" class="btn-volver">< Volver a los Sectores</a>
+    <section class="secciones" style="margin-top: 20px">
+      <div class="infografia">
+        <h1 class="info-titulo">02 // PRINCIPIO DE PASCAL</h1>
 
-    <section class="secciones" style="margin-top: 20px;">
-        <div class="infografia">
-            <h1 class="info-titulo">02 // PRINCIPIO DE PASCAL</h1>
-            
-            <p class="info-texto">
-                Enunciado por el físico y matemático francés Blaise Pascal, este principio es la base de toda la hidráulica moderna. Establece que <strong>la presión ejercida sobre un fluido incompresible y en equilibrio dentro de un recipiente de paredes indeformables se transmite con igual intensidad en todas las direcciones y en todos los puntos del fluido</strong>.
-            </p>
+        <p class="info-texto">
+          Enunciado por el físico y matemático francés Blaise Pascal, este
+          principio es la base de toda la hidráulica moderna. Establece que
+          <strong
+            >la presión ejercida sobre un fluido incompresible y en equilibrio
+            dentro de un recipiente de paredes indeformables se transmite con
+            igual intensidad en todas las direcciones y en todos los puntos del
+            fluido</strong
+          >.
+        </p>
 
-            <p class="info-texto">
-                Gracias a esta ley funcionan los frenos de tu coche o las grúas gigantes. Permite multiplicar la fuerza: si aplicas una fuerza pequeña en un émbolo pequeño, el fluido la transmite y genera una fuerza enorme en un émbolo más grande.
-            </p>
+        <p class="info-texto">
+          Gracias a esta ley funcionan los frenos de tu coche o las grúas
+          gigantes. Permite multiplicar la fuerza: si aplicas una fuerza pequeña
+          en un émbolo pequeño, el fluido la transmite y genera una fuerza
+          enorme en un émbolo más grande.
+        </p>
 
-            <div class="portal-monitor">
-                <video class="portal-video" autoplay loop muted playsinline>
-                    <source src="pascal2.mp4" type="video/mp4">
-                    Tu navegador no soporta la simulación visual.
-                </video>
-                <div class="portal-caption">
-                    <span>▶ ARCHIVO VISUAL_02</span>
-                    <span>SISTEMA EN LÍNEA</span>
-                </div>
-            </div>
-
-            <div class="formula-box">
-                $$P = \frac{F_1}{A_1} = \frac{F_2}{A_2}$$
-            </div>
-
-            <p class="info-texto" style="color: var(--texto-dim); font-size: 14px;">
-                Donde:<br>
-                <strong>P</strong> = Presión total (Pa o Pascales)<br>
-                <strong>F<sub>1</sub> y F<sub>2</sub></strong> = Fuerzas aplicadas en los émbolos (N)<br>
-                <strong>A<sub>1</sub> y A<sub>2</sub></strong> = Áreas de las superficies de los émbolos (m^2)
-            </p>
+        <div class="portal-monitor">
+          <video class="portal-video" autoplay loop muted playsinline>
+            <source src="pascal2.mp4" type="video/mp4" />
+            Tu navegador no soporta la simulación visual.
+          </video>
+          <div class="portal-caption">
+            <span>▶ ARCHIVO VISUAL_02</span>
+            <span>SISTEMA EN LÍNEA</span>
+          </div>
         </div>
+
+        <div class="formula-box">$$P = \frac{F_1}{A_1} = \frac{F_2}{A_2}$$</div>
+
+        <p class="info-texto" style="color: var(--texto-dim); font-size: 14px">
+          Donde:<br />
+          <strong>P</strong> = Presión total (Pa o Pascales)<br />
+          <strong>F<sub>1</sub> y F<sub>2</sub></strong> = Fuerzas aplicadas en
+          los émbolos (N)<br />
+          <strong>A<sub>1</sub> y A<sub>2</sub></strong> = Áreas de las
+          superficies de los émbolos (m^2)
+        </p>
+      </div>
     </section>
 
-    <section class="footer"></section>
-</body>
+    <footer class="footer">
+      <a
+        class="github-link"
+        href="https://github.com/screenmp3/lambda-physics"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Repositorio de Lambda Physics en GitHub"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path
+            fill="currentColor"
+            d="M8 0C3.58 0 0 3.67 0 8.2c0 3.63 2.29 6.71 5.47 7.8.4.08.55-.18.55-.4 0-.2-.01-.86-.01-1.56-2.22.49-2.69-.98-2.69-.98-.36-.95-.89-1.2-.89-1.2-.72-.5.06-.49.06-.49.8.06 1.22.84 1.22.84.71 1.25 1.86.89 2.31.68.07-.53.28-.89.5-1.09-1.77-.2-3.64-.91-3.64-4.03 0-.89.31-1.61.82-2.18-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.83A7.37 7.37 0 0 1 8 3.75c.68 0 1.37.09 2.01.27 1.53-1.05 2.2-.83 2.2-.83.44 1.1.16 1.92.08 2.12.51.57.82 1.29.82 2.18 0 3.13-1.88 3.82-3.67 4.02.29.25.54.74.54 1.49 0 1.08-.01 1.94-.01 2.21 0 .22.14.49.55.4A8.22 8.22 0 0 0 16 8.2C16 3.67 12.42 0 8 0z"
+          />
+        </svg>
+        <span>davidrlopez/lambda-physics</span>
+      </a>
+    </footer>
+  </body>
 </html>

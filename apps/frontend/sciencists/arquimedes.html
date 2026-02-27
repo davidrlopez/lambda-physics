@@ -1,71 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../index/indice.css">
-    <link rel="stylesheet" href="arquimedes.css">
-    <link rel="stylesheet" href="cientificos.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../index/indice.css" />
+    <link rel="stylesheet" href="arquimedes.css" />
+    <link rel="stylesheet" href="cientificos.css" />
     <title>Principio de Arquímedes - Lambda Physics</title>
-</head>
-<body class="arquimedes">
+  </head>
+  <body class="arquimedes">
     <div class="header">
-        <p>PROYECTO CULTURAL DE FÍSICA</p>
+      <p>LAMBDA COMPLEX</p>
+      <a href="../index/indice.html"></a>
     </div>
 
     <div class="espacio"></div>
 
-    <a href="../index/indice.html" class="btn-volver">< Volver a los Sectores</a>
+    <section class="secciones" style="margin-top: 20px">
+      <div class="infografia">
+        <h1 class="info-titulo">01 // PRINCIPIO DE ARQUÍMEDES</h1>
 
-    <section class="secciones" style="margin-top: 20px;">
-        <div class="infografia">
-            <h1 class="info-titulo">01 // PRINCIPIO DE ARQUÍMEDES</h1>
-            
-            <p class="info-texto">
-                Descubierto por el matemático griego Arquímedes en el siglo III a.C., este principio establece una ley fundamental de la estática de fluidos. Dicta que <strong>todo cuerpo sumergido total o parcialmente en un fluido (líquido o gas) experimenta una fuerza de empuje hacia arriba</strong>.
-            </p>
+        <p class="info-texto">
+          Descubierto por el matemático griego Arquímedes en el siglo III a.C.,
+          este principio establece una ley fundamental de la estática de
+          fluidos. Dicta que
+          <strong
+            >todo cuerpo sumergido total o parcialmente en un fluido (líquido o
+            gas) experimenta una fuerza de empuje hacia arriba</strong
+          >.
+        </p>
 
-            <p class="info-texto">
-                Esta fuerza ascendente es exactamente igual al peso del volumen del fluido que el objeto ha desplazado. Es la razón por la que los enormes barcos de acero pueden flotar en el océano, o por qué te sientes más ligero cuando te sumerges en una piscina.
-            </p>
-            
-            <div class="videos-row">
-                
-                <div class="portal-monitor">
-                    <video class="portal-video" autoplay loop muted playsinline>
-                        <source src="Arquimedes1.mp4" type="video/mp4">
-                    </video>
-                    <div class="portal-caption">
-                        <span>▶ VISUAL_01A</span>
-                        <span>FLOTABILIDAD</span>
-                    </div>
-                </div>
+        <p class="info-texto">
+          Esta fuerza ascendente es exactamente igual al peso del volumen del
+          fluido que el objeto ha desplazado. Es la razón por la que los enormes
+          barcos de acero pueden flotar en el océano, o por qué te sientes más
+          ligero cuando te sumerges en una piscina.
+        </p>
 
-                <div class="portal-monitor">
-                    <video class="portal-video" autoplay loop muted playsinline>
-                        <source src="arquimedes2.mp4" type="video/mp4">
-                    </video>
-                    <div class="portal-caption">
-                        <span>▶ VISUAL_01B</span>
-                        <span>DESPLAZAMIENTO</span>
-                    </div>
-                </div>
-
+        <div class="videos-row">
+          <div class="portal-monitor">
+            <video class="portal-video" autoplay loop muted playsinline>
+              <source src="Arquimedes1.mp4" type="video/mp4" />
+            </video>
+            <div class="portal-caption">
+              <span>▶ VISUAL_01A</span>
+              <span>FLOTABILIDAD</span>
             </div>
-            <div class="formula-box">
-                E = ∂ * g * V
-            </div>
+          </div>
 
-            <p class="info-texto" style="color: var(--texto-dim); font-size: 14px;">
-                Donde:<br>
-                <strong>E</strong> = Empuje hidrostático (N)<br>
-                <strong>∂</strong> = Densidad del fluido (kg/m³)<br>
-                <strong>g</strong> = Aceleración de la gravedad (9.8 m/s²)<br>
-                <strong>V</strong> = Volumen del fluido desplazado (m³)
-            </p>
+          <div class="portal-monitor">
+            <video class="portal-video" autoplay loop muted playsinline>
+              <source src="arquimedes2.mp4" type="video/mp4" />
+            </video>
+            <div class="portal-caption">
+              <span>▶ VISUAL_01B</span>
+              <span>DESPLAZAMIENTO</span>
+            </div>
+          </div>
         </div>
+        <div class="formula-box">E = ∂ * g * V</div>
+
+        <p class="info-texto" style="color: var(--texto-dim); font-size: 14px">
+          Donde:<br />
+          <strong>E</strong> = Empuje hidrostático (N)<br />
+          <strong>∂</strong> = Densidad del fluido (kg/m³)<br />
+          <strong>g</strong> = Aceleración de la gravedad (9.8 m/s²)<br />
+          <strong>V</strong> = Volumen del fluido desplazado (m³)
+        </p>
+      </div>
     </section>
 
-    <section class="footer"></section>
-</body>
+    <footer class="footer">
+      <a
+        class="github-link"
+        href="https://github.com/screenmp3/lambda-physics"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Repositorio de Lambda Physics en GitHub"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path
+            fill="currentColor"
+            d="M8 0C3.58 0 0 3.67 0 8.2c0 3.63 2.29 6.71 5.47 7.8.4.08.55-.18.55-.4 0-.2-.01-.86-.01-1.56-2.22.49-2.69-.98-2.69-.98-.36-.95-.89-1.2-.89-1.2-.72-.5.06-.49.06-.49.8.06 1.22.84 1.22.84.71 1.25 1.86.89 2.31.68.07-.53.28-.89.5-1.09-1.77-.2-3.64-.91-3.64-4.03 0-.89.31-1.61.82-2.18-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.83A7.37 7.37 0 0 1 8 3.75c.68 0 1.37.09 2.01.27 1.53-1.05 2.2-.83 2.2-.83.44 1.1.16 1.92.08 2.12.51.57.82 1.29.82 2.18 0 3.13-1.88 3.82-3.67 4.02.29.25.54.74.54 1.49 0 1.08-.01 1.94-.01 2.21 0 .22.14.49.55.4A8.22 8.22 0 0 0 16 8.2C16 3.67 12.42 0 8 0z"
+          />
+        </svg>
+        <span>davidrlopez/lambda-physics</span>
+      </a>
+    </footer>
+  </body>
 </html>

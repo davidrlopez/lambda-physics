@@ -4,17 +4,19 @@
 
 _Originally developed as a web module for a public university network, providing students with direct access to educational content and live multiplayer game rooms._
 
+Conceived and shipped in one week with zero prior experience in game modding, map creation, WebAssembly, or Linux server deployment, built to fulfill a university-imposed one-week deadline.
+
 ---
 
 ## Gallery
 
-| Map Development | In-Game Screenshots (WebXash) |
-| :---: | :---: |
-| <img src="screenshots/betaSpeedrun.png" width="400" alt="Speedrun Map Development"> <br> <sub>Initial speedrun map — early design and structure.</sub> | <img src="screenshots/beta1.png" width="400" alt="Speedrun Beta 1"> <br> <sub>Platform section affected by low gravity.</sub> |
-| <img src="screenshots/betaSpeedrun2.png" width="400" alt="Speedrun Map Development 2"> <br> <sub>Design improvements and layout adjustments.</sub> | <img src="screenshots/beta2.png" width="400" alt="Speedrun Beta 2"> <br> <sub>Upper platform section, looking down to the water area.</sub> |
+|                                                                        Map Development                                                                         |                                                           In-Game Screenshots (WebXash)                                                           |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
+|     <img src="screenshots/betaSpeedrun.png" width="400" alt="Speedrun Map Development"> <br> <sub>Initial speedrun map — early design and structure.</sub>     |           <img src="screenshots/beta1.png" width="400" alt="Speedrun Beta 1"> <br> <sub>Platform section affected by low gravity.</sub>           |
+|       <img src="screenshots/betaSpeedrun2.png" width="400" alt="Speedrun Map Development 2"> <br> <sub>Design improvements and layout adjustments.</sub>       |    <img src="screenshots/beta2.png" width="400" alt="Speedrun Beta 2"> <br> <sub>Upper platform section, looking down to the water area.</sub>    |
 | <img src="screenshots/betaSpeedrun3.png" width="400" alt="Speedrun Map Development 3"> <br> <sub>Final development version, ready for intensive testing.</sub> | <img src="screenshots/beta3.png" width="400" alt="Speedrun Beta 3"> <br> <sub>Final platform with normal gravity and a 2-second door timer.</sub> |
-| <img src="screenshots/physicsDemoMap.png" width="400" alt="Physics Demo Lab"> <br> <sub>Demo map designed to illustrate physics principles on the web.</sub> | <img src="screenshots/arquimedes.png" width="400" alt="Archimedes Demo"> <br> <sub>Archimedes' Principle demo.</sub> |
-| <img src="screenshots/physicsDemoMap2.png" width="400" alt="Physics Demo Lab 2"> <br> <sub>Physics lab — interactive element details.</sub> | <img src="screenshots/pascal.png" width="400" alt="Pascal Demo"> <br> <sub>Pascal and Newton demo.</sub> |
+|  <img src="screenshots/physicsDemoMap.png" width="400" alt="Physics Demo Lab"> <br> <sub>Demo map designed to illustrate physics principles on the web.</sub>  |               <img src="screenshots/arquimedes.png" width="400" alt="Archimedes Demo"> <br> <sub>Archimedes' Principle demo.</sub>                |
+|          <img src="screenshots/physicsDemoMap2.png" width="400" alt="Physics Demo Lab 2"> <br> <sub>Physics lab — interactive element details.</sub>           |                     <img src="screenshots/pascal.png" width="400" alt="Pascal Demo"> <br> <sub>Pascal and Newton demo.</sub>                      |
 
 ### Speedrun v2 — Early Development
 
@@ -39,17 +41,17 @@ _Originally developed as a web module for a public university network, providing
 
 This repository is a monorepo with two main applications:
 
-| Path | Description |
-|---|---|
-| `/apps/frontend` | Vanilla HTML/CSS/JS web interface — educational content, student projects, and live leaderboards. |
-| `/apps/backend` | REST API built with Node.js, Fastify, TypeScript, and Prisma (PostgreSQL). Receives match data from the C++ game mod and serves it to the frontend. |
+| Path             | Description                                                                                                                                         |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/apps/frontend` | Vanilla HTML/CSS/JS web interface — educational content, student projects, and live leaderboards.                                                   |
+| `/apps/backend`  | REST API built with Node.js, Fastify, TypeScript, and Prisma (PostgreSQL). Receives match data from the C++ game mod and serves it to the frontend. |
 
 ### Powered By
 
-| Project | Role |
-|---|---|
-| [Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs) | Open-source game engine compatible with GoldSrc. |
-| [WebXash3D](https://github.com/FWGS/hlsdk-xash3d) | WebAssembly port — runs the engine directly in modern browsers. |
+| Project                                            | Role                                                            |
+| -------------------------------------------------- | --------------------------------------------------------------- |
+| [Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs) | Open-source game engine compatible with GoldSrc.                |
+| [WebXash3D](https://github.com/FWGS/hlsdk-xash3d)  | WebAssembly port — runs the engine directly in modern browsers. |
 
 ---
 
@@ -83,25 +85,28 @@ Designed to run on a Linux server using Docker, with Caddy as a reverse proxy.
 ### Services
 
 **1. Static Frontend**
+
 - Served by Caddy (`webxash-cache` container)
 - `/` routes to the main index
 
 **2. Backend API**
+
 - Container: `lambda-api`
 - Port mapping: `4000/tcp` (host) → `3000/tcp` (container)
 - Database: `lambda-db` (PostgreSQL 16, persistent volume)
 
 **Endpoints:**
 
-| Method | Route | Description |
-|---|---|---|
-| GET | `/api/stats` | General stats |
-| GET | `/api/ranking` | Global leaderboard |
-| GET | `/api/jugadores/:nombre/historial` | Player match history |
-| POST | `/api/jugadores` | Register player |
-| POST | `/api/partidas` | Submit match result |
+| Method | Route                              | Description          |
+| ------ | ---------------------------------- | -------------------- |
+| GET    | `/api/stats`                       | General stats        |
+| GET    | `/api/ranking`                     | Global leaderboard   |
+| GET    | `/api/jugadores/:nombre/historial` | Player match history |
+| POST   | `/api/jugadores`                   | Register player      |
+| POST   | `/api/partidas`                    | Submit match result  |
 
 **Security:**
+
 - Input validation on `nombre`, `tiempo`, `muertes`, and `limit`
 - Configurable CORS via `CORS_ORIGINS`
 - Rate limiting on non-GET routes
@@ -110,8 +115,8 @@ Designed to run on a Linux server using Docker, with Caddy as a reverse proxy.
 
 Multiple instances to handle university traffic:
 
-| Room | TCP | UDP |
-|---|---|---|
+| Room   | TCP   | UDP           |
+| ------ | ----- | ------------- |
 | Room 1 | 27016 | 27015 / 27018 |
 | Room 2 | 27116 | 27115 / 27118 |
 

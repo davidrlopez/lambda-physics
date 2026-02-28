@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap");
 
 :root {
-    --blue-bright: #00d4ff;
-    --azul-claro: #00d4ff;
-    --azul-oscuro: #0a1219;
-    --naranja-hl: #ff9d00;
-    --verde-claro: #00ff88;
-    --verde-oscuro: #0a1912;
-    --texto-main: #e2f0e8;
-    --texto-dim: #8bc0a1;
-    --borde: rgba(0, 255, 136, 0.2);
-    --carta-bg: rgba(15, 35, 25, 0.9);
+  --blue-bright: #00d4ff;
+  --azul-claro: #00d4ff;
+  --azul-oscuro: #0a1219;
+  --naranja-hl: #ff9d00;
+  --verde-claro: #00ff88;
+  --verde-oscuro: #0a1912;
+  --texto-main: #e2f0e8;
+  --texto-dim: #8bc0a1;
+  --borde: rgba(0, 255, 136, 0.2);
+  --carta-bg: rgba(15, 35, 25, 0.9);
 }
 
 * {
@@ -26,28 +26,39 @@ html {
 }
 
 body {
-    background-color: transparent;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    padding-bottom: 80px;
+  background-color: transparent;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-bottom: 80px;
 }
 
 /* ANIMACION PARTICULAS BACKGROUND*/
 body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.15) 1px, transparent 1px),
-                radial-gradient(circle, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
-    background-size: 1px 8px, 200px 100px;
-    z-index: -2;
-    animation: particle-move 60s linear infinite;
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle, rgba(0, 255, 136, 0.15) 1px, transparent 1px),
+    radial-gradient(circle, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+  background-size:
+    1px 8px,
+    200px 100px;
+  z-index: -2;
+  animation: particle-move 60s linear infinite;
 }
 
 @keyframes particle-move {
-    0% { background-position: 0 0, 0 0; }
-    100% { background-position: 300px 300px, -150px -150px; }
+  0% {
+    background-position:
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position:
+      300px 300px,
+      -150px -150px;
+  }
 }
 
 .header {
@@ -145,59 +156,65 @@ body::after {
 }
 
 .galeria {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
 }
 
 .proyecto {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--carta-bg);
-    border: 2px solid var(--borde);
-    min-width: 400px;
-    height: 200px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--carta-bg);
+  border: 2px solid var(--borde);
+  width: calc(33.333% - 20px);
+  min-width: 300px;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
-
 .proyecto:hover {
-    transform: translateY(-5px);
-    background-color: rgba(0, 255, 136, 0.05);
-    border-color: var(--verde-claro);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--verde-claro);
+  transform: translateY(-5px);
+  background-color: rgba(0, 255, 136, 0.05);
+  border-color: var(--verde-claro);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 15px var(--verde-claro);
 }
 
 .proyecto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s, filter 0.3s;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.3s,
+    filter 0.3s;
 }
 
 .proyecto:hover img {
-    transform: scale(1.1);
-    filter: brightness(50%);
+  transform: scale(1.1);
+  filter: brightness(50%);
 }
 
 .proyecto .descripcion {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
 
 .proyecto:hover .descripcion {
-    opacity: 1;
+  opacity: 1;
 }
 
 .footer {
@@ -241,86 +258,85 @@ body::after {
 /* ========================= */
 
 @media (max-width: 768px) {
-    .header p {
-        font-size: 16px;
-        margin-left: 6px;
-    }
+  .header p {
+    font-size: 16px;
+    margin-left: 6px;
+  }
 
-    .header p:before {
-        margin-right: 10px;
-        font-size: 22px;
-    }
+  .header p:before {
+    margin-right: 10px;
+    font-size: 22px;
+  }
 
-    .header a {
-        right: 16px;
-    }
+  .header a {
+    right: 16px;
+  }
 
-    .header a:before {
-        content: "←";
-        font-size: 25px;
-    }
+  .header a:before {
+    content: "←";
+    font-size: 25px;
+  }
 
-    .espacio {
-        height: 96px;
-    }
+  .espacio {
+    height: 96px;
+  }
 
-    .titulo h1 {
-        font-size: 2.2rem;
-        line-height: 1.15;
-        padding: 0 10px;
-    }
+  .titulo h1 {
+    font-size: 2.2rem;
+    line-height: 1.15;
+    padding: 0 10px;
+  }
 
-    .titulo p {
-        font-size: 1rem;
-    }
+  .titulo p {
+    font-size: 1rem;
+  }
 
+  .galeria {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .galeria {
-        flex-direction: column;
-        align-items: center;
-    }
+  .proyecto {
+    min-width: 90%;
+    height: auto;
+  }
 
-    .proyecto {
-        min-width: 90%;
-        height: auto;
-    }
+  .proyecto img {
+    height: auto;
+    max-height: none;
+  }
 
-    .proyecto img {
-        height: auto;
-        max-height: none;
-    }
+  /* Quitamos efectos hover en móvil */
+  .proyecto:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: var(--borde);
+    background-color: var(--carta-bg);
+  }
 
-    /* Quitamos efectos hover en móvil */
-    .proyecto:hover {
-        transform: none;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        border-color: var(--borde);
-        background-color: var(--carta-bg);
-    }
+  .proyecto:hover img {
+    transform: none;
+    filter: none;
+  }
 
-    .proyecto:hover img {
-        transform: none;
-        filter: none;
-    }
+  /* Descripción como bloque debajo */
+  .proyecto .descripcion {
+    position: static;
+    transform: none;
+    opacity: 1;
+    background-color: rgba(0, 255, 136, 0.08);
+    color: var(--texto-main);
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 400;
+    border-top: 1px solid var(--borde);
+    text-align: center;
+  }
 
-    /* Descripción como bloque debajo */
-    .proyecto .descripcion {
-        position: static;
-        transform: none;
-        opacity: 1;
-        background-color: rgba(0, 255, 136, 0.08);
-        color: var(--texto-main);
-        padding: 15px;
-        font-size: 1rem;
-        font-weight: 400;
-        border-top: 1px solid var(--borde);
-        text-align: center;
-    }
-
-    .github-link span {
-        max-width: 70vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+  .github-link span {
+    max-width: 70vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }

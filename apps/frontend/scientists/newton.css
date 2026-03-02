@@ -18,7 +18,7 @@
             color: var(--texto-main);
             font-size: 18px;
             margin-bottom: 20px;
-            text-align: justify;
+            text-align: left;
         }
      
         .portal-monitor {

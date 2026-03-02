@@ -208,7 +208,7 @@ body::before {
   border-left: 2px solid var(--tema-color);
   padding-left: 15px;
   transition: all 0.3s ease;
-  text-align: justify;
+  text-align: left;
 }
 
 .info-texto:hover {

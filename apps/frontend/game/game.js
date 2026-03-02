@@ -1,9 +1,9 @@
 async function cargarRanking() {
   try {
     const urls = [
-      "https://davidserverubuntu.duckdns.org/api/ranking?limit=20",
-      "https://davidserverubuntu.duckdns.org:4000/api/ranking?limit=20",
-      "http://davidserverubuntu.duckdns.org:4000/api/ranking?limit=20",
+      "https://lambda-physics2.duckdns.org/index.html:4000/api/ranking?limit=20",
+      "https://lambda-physics2.duckdns.org/index.html:4000/api/ranking?limit=20",
+      "http://lambda-physics2.duckdns.org/index.html:4000/api/ranking?limit=20",
     ];
 
     let datos = null;
@@ -71,7 +71,8 @@ async function cargarRanking() {
     });
   } catch (error) {
     console.error("Error de conexión:", error);
-    const detalle = error instanceof Error ? error.message : "Error desconocido.";
+    const detalle =
+      error instanceof Error ? error.message : "Error desconocido.";
     document.getElementById("lista-ranking").innerHTML =
       `<li style="justify-content: center; color: red;">ERROR AL CARGAR RANKING: ${detalle}</li>`;
   }

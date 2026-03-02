@@ -1,50 +1,22 @@
 async function cargarRanking() {
   try {
-    const urls = [
-      "https://lambda-physics2.duckdns.org/index.html:4000/api/ranking?limit=20",
-      "https://lambda-physics2.duckdns.org/index.html:4000/api/ranking?limit=20",
-      "http://lambda-physics2.duckdns.org/index.html:4000/api/ranking?limit=20",
-    ];
-
-    let datos = null;
-    let ultimoError = null;
-
-    for (const url of urls) {
-      if (window.location.protocol === "https:" && url.startsWith("http://")) {
-        continue;
-      }
-
-      try {
-        const respuesta = await fetch(url);
-        if (!respuesta.ok) {
-          throw new Error(`HTTP ${respuesta.status}`);
-        }
-
-        const candidato = await respuesta.json();
-        if (!Array.isArray(candidato)) {
-          throw new Error("Formato inválido: /api/ranking no devuelve array.");
-        }
-
-        datos = candidato;
-        break;
-      } catch (error) {
-        ultimoError = error;
-      }
+    const url = "/api/ranking?limit=20";
+    
+    const respuesta = await fetch(url);
+    if (!respuesta.ok) {
+      throw new Error(`HTTP ${respuesta.status}`);
     }
 
+    const datos = await respuesta.json();
     if (!Array.isArray(datos)) {
-      const detalle =
-        ultimoError instanceof Error
-          ? ultimoError.message
-          : "No se pudo conectar con ningún endpoint de ranking.";
-      throw new Error(detalle);
+      throw new Error("Formato inválido: /api/ranking no devuelve array.");
     }
+
     const ranking = datos;
 
     const contenedor = document.getElementById("lista-ranking");
-    contenedor.innerHTML = ""; // LIMPIEZA DE MENSAJE
+    contenedor.innerHTML = "";
 
-    // LISTA SOLO CON LOS 20 PRIMEROS
     const top20 = ranking.slice(0, 20);
 
     if (top20.length === 0) {
@@ -53,7 +25,6 @@ async function cargarRanking() {
       return;
     }
 
-    // SE DIBUJA
     top20.forEach((posicion, index) => {
       const elemento = document.createElement("li");
 
@@ -89,4 +60,48 @@ function PantallaCompleta() {
     juego.msRequestFullscreen();
   }
 }
+
+let startTime = null;
+
+window.addEventListener("message", async (event) => {
+  if (event.origin !== "https://davidserverubuntu2.duckdns.org") return;
+
+  const data = event.data;
+
+  if (data.type === "SPEEDRUN_START") {
+    startTime = Date.now();
+  }
+
+  if (data.type === "SPEEDRUN_END" && startTime) {
+    const timeMs = Date.now() - startTime;
+    const tiempoSegundos = Math.round(timeMs / 1000);
+    startTime = null;
+    
+    const nombreJugador = prompt("¡Nivel completado! Ingresa tu nombre:") ?? "Anonimo";
+
+    try {
+      await fetch("/api/jugadores", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre: nombreJugador })
+      });
+
+      await fetch("/api/partidas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          nombre: nombreJugador, 
+          tiempo: tiempoSegundos, 
+          muertes: 0 
+        })
+      });
+
+      cargarRanking();
+      alert(`¡Tiempo registrado! ${tiempoSegundos} segundos.`);
+    } catch (err) {
+      console.error("Error al guardar la partida:", err);
+    }
+  }
+});
+
 cargarRanking();

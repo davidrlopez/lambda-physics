@@ -1,5 +1,7 @@
 # Lambda Physics
 
+[![ciLmd](https://github.com/davidrlopez/lambda-physics/actions/workflows/ciLmd.yml/badge.svg)](https://github.com/davidrlopez/lambda-physics/actions/workflows/ciLmd.yml)
+
 > An interactive educational portal exploring the fundamental laws of physics — combining theory with a browser-playable speedrunning game built as a custom Half-Life modification.
 
 _Originally developed as a web module for a public university network, providing students with direct access to educational content and live multiplayer game rooms._

@@ -1,4 +1,4 @@
-iname: ciLmd
+name: ciLmd
 
 on:
   push:

@@ -6,7 +6,7 @@
     "build": "prisma generate && tsc",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "test": "vitest run"
+    "test": "dotenv -e .env.test -- vitest run"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.0",
@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/node": "^22.19.11",
     "dotenv": "^17.4.2",
+    "dotenv-cli": "^11.0.0",
     "prisma": "^6.0.0",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0",

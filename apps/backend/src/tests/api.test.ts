@@ -1,3 +1,5 @@
+import { config } from "dotenv";
+config({ path: ".env.test" });
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { buildApp } from "../app";
 

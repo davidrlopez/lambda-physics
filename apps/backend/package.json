@@ -6,7 +6,7 @@
     "build": "prisma generate && tsc",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "test": "dotenv -e .env.test -- vitest run"
+    "test": "vitest run"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.0",
